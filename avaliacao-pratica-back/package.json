@@ -1,0 +1,22 @@
+{
+  "name": "avaliacao-pratica-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Bomsalvez",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "md5": "^2.3.0",
+    "nedb": "^1.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}

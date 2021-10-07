@@ -29,7 +29,6 @@ app.get('/site', (req, resp, next) => {
 })
 
 app.get('/site/:id', (req, resp, next) => {
-    console.log(req.params.id)
     const [site] = persist.select(req.params.id);
     if (req.query.senha) {
         site.senha = new Buffer(site.senha, 'base64').toString('ascii');

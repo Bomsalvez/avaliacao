@@ -1,7 +1,6 @@
 const persist = require('../persistencia/SiteCadastradoPersist');
 const app = require('express')();
 const parser = require('body-parser');
-const {request} = require("express");
 
 const controller = app.use(parser.json());
 
@@ -21,14 +20,20 @@ app.post('/site', (req, resp, next) => {
 
 app.get('/site', (req, resp, next) => {
     const site = persist.selectAll();
+    site.map(s => {
+        delete s.email;
+        delete s.usuario;
+        delete s.senha;
+    })
     resp.send(site)
 })
 
-app.get('/site/:email', (req, resp, next) => {
-    const [site] = persist.select(req.params.email);
-    // request(site.url, (err, resp, html) => {
-    //     console.log(html)
-    // })
+app.get('/site/:id', (req, resp, next) => {
+    console.log(req.params.id)
+    const [site] = persist.select(req.params.id);
+    if (req.query.senha) {
+        site.senha = new Buffer(site.senha, 'base64').toString('ascii');
+    }
     resp.send(site)
 })
 module.exports = controller;

@@ -17,11 +17,12 @@ function selectAll() {
     return global.sites;
 }
 
-function select(email) {
-    db.find({email: email}, (err, sites) => {
+function select(id) {
+    db.find({_id: id}, (err, sites) => {
         if (err) global.sites = ('Nao foi cadastrado nenhum site');
         global.sites = sites;
     })
+    console.log(global.sites)
     return global.sites;
 }
 

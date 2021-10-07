@@ -4,13 +4,12 @@ const parser = require('body-parser');
 const md5 = require('md5');
 
 
-const controller = app.use(parser.json())
+const controller = app.use(parser.json());
 
 app.post('/usuario', (req, resp, next) => {
     const senha = (s) => {
         let aprovado = true;
         if (!s.match(new RegExp('[0-9]'))) aprovado = false;
-        if (!s.match(new RegExp('[A-Z]'))) aprovado = false;
         if (!s.match(new RegExp('[a-z]'))) aprovado = false;
         if (!s.match(new RegExp('(?=.*[@#$%^&+=])'))) aprovado = false;
         if (s.length < 8) aprovado = false;
@@ -34,7 +33,6 @@ app.post('/usuario/login', (req, resp, next) => {
         email: req.body.email,
         senha: md5(req.body.senha)
     });
-    delete usuario.senha;
     resp.send(usuario)
 });
 

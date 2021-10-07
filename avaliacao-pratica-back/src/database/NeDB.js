@@ -1,4 +1,5 @@
 const nedb = require('nedb');
-const db = new nedb({filename: './src/database/banco.db', autoload: true});
+const usuario = new nedb({filename: './src/database/banco_usuario.db', autoload: true});
+const site = new nedb({filename: './src/database/banco_site.db', autoload: true});
 
-module.exports = db;
+module.exports = {usuario, site};

@@ -1,4 +1,4 @@
-const db = require('../database/NeDB');
+const db = require('../database/NeDB').usuario;
 
 function login(usuario) {
     db.find({email: usuario.email, senha: usuario.senha}, function (err, user) {

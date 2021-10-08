@@ -2,7 +2,10 @@ const persist = require('../persistencia/SiteCadastradoPersist');
 const app = require('express')();
 const parser = require('body-parser');
 
-const controller = app.use(parser.json());
+const controller = app.use(parser.json(),(req,resp,next)=>{
+    resp.setHeader("Access-Control-Allow-Origin", "*");
+    next();
+});
 
 app.post('/site', (req, resp, next) => {
     const enconde = () => {
@@ -31,6 +34,7 @@ app.get('/site', (req, resp, next) => {
 app.get('/site/:id', (req, resp, next) => {
     const [site] = persist.select(req.params.id);
     if (req.query.senha) {
+    console.log(site)
         site.senha = new Buffer(site.senha, 'base64').toString('ascii');
     }
     resp.send(site)
